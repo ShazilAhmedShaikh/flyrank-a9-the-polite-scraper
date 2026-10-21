@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Polite Scraper - Live Run Dashboard</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #38bdf8; margin-bottom: 0.5rem; }
+        .subtitle { color: #94a3b8; margin-bottom: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .card { background: #1e293b; padding: 1.5rem; border-radius: 8px; border: 1px solid #334155; }
+        .card-val { font-size: 2rem; font-weight: bold; color: #38bdf8; }
+        .card-label { color: #94a3b8; font-size: 0.875rem; text-transform: uppercase; margin-top: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: #1e293b; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #334155; font-size: 0.875rem; }
+        th { background: #0f172a; color: #cbd5e1; }
+        tr:hover { background: #334155; }
+        .badge { padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: bold; background: #0284c7; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Polite Scraper Dashboard</h1>
+        <div class="subtitle">Execution Report: 2026-10-21T17:55:41Z | Target: Books to Scrape</div>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-val">60</div>
+                <div class="card-label">Validated Records</div>
+            </div>
+            <div class="card">
+                <div class="card-val">60</div>
+                <div class="card-label">Cache Hits</div>
+            </div>
+            <div class="card">
+                <div class="card-val">£35.0</div>
+                <div class="card-label">Average Price (Range: £12.84 - £57.31)</div>
+            </div>
+            <div class="card">
+                <div class="card-val">0</div>
+                <div class="card-label">Failed Pages Isolated</div>
+            </div>
+        </div>
+
+        <h2>Sample Scraped Records (First 5 of 60)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>A Light in the Attic</strong></td>
+                    <td>£51.77</td>
+                    <td><span class="badge">Three Stars</span></td>
+                    <td>In stock (22 available)</td>
+                </tr>
+                <tr>
+                    <td><strong>Tipping the Velvet</strong></td>
+                    <td>£53.74</td>
+                    <td><span class="badge">One Stars</span></td>
+                    <td>In stock (20 available)</td>
+                </tr>
+                <tr>
+                    <td><strong>Soumission</strong></td>
+                    <td>£50.1</td>
+                    <td><span class="badge">One Stars</span></td>
+                    <td>In stock (20 available)</td>
+                </tr>
+                <tr>
+                    <td><strong>Sharp Objects</strong></td>
+                    <td>£47.82</td>
+                    <td><span class="badge">Four Stars</span></td>
+                    <td>In stock (20 available)</td>
+                </tr>
+                <tr>
+                    <td><strong>Sapiens: A Brief History of Humankind</strong></td>
+                    <td>£54.23</td>
+                    <td><span class="badge">Five Stars</span></td>
+                    <td>In stock (20 available)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -14,6 +14,7 @@ from src.crawler import crawl_catalogue
 from src.fetcher import fetch_html
 from src.parser import parse_book_detail
 from src.models import BookRecord, normalize_price
+from src.extras import export_to_csv, detect_changes, generate_dashboard_html
 
 START_URL = "https://books.toscrape.com/catalogue/page-1.html"
 OUTPUT_DIR = Path("output")
@@ -24,7 +25,7 @@ def run_pipeline(inject_fake_url: bool = False) -> Dict[str, Any]:
     Execute complete scraping pipeline with failure isolation and run reporting:
     - Survives broken pages without crashing.
     - Collects provenance and timing metrics.
-    - Writes output/books.json and output/run-report.json.
+    - Writes output/books.json, output/books.csv, output/dashboard.html, and output/run-report.json.
     """
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     start_time_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -105,6 +106,10 @@ def run_pipeline(inject_fake_url: bool = False) -> Dict[str, Any]:
     elif errors_file.exists():
         errors_file.unlink()
 
+    # Extras: CSV Export & Change Detection & HTML Dashboard
+    export_to_csv(valid_records, OUTPUT_DIR / "books.csv")
+    changes = detect_changes(valid_records, OUTPUT_DIR / ".scrape_state.json")
+
     # 5. Generate Run Report
     end_time_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     duration_seconds = round(time.time() - start_clock, 2)
@@ -118,17 +123,20 @@ def run_pipeline(inject_fake_url: bool = False) -> Dict[str, Any]:
         "valid_records": len(valid_records),
         "invalid_records": len(invalid_records),
         "failed_pages": len(failed_urls),
-        "failed_urls": failed_urls
+        "failed_urls": failed_urls,
+        "change_detection": changes
     }
 
     report_file = OUTPUT_DIR / "run-report.json"
     report_file.write_text(json.dumps(report, indent=2), encoding="utf-8")
 
+    generate_dashboard_html(report, valid_records, OUTPUT_DIR / "dashboard.html")
+
     return report
 
 def main():
     inject_fake = "--inject-fake-url" in sys.argv
-    print(f"--- Stage 5 Checkpoint: Survive failures, report the run (inject_fake={inject_fake}) ---")
+    print(f"--- The Polite Scraper Pipeline (inject_fake={inject_fake}) ---")
     report = run_pipeline(inject_fake_url=inject_fake)
     
     print("\nRun Report Summary:")
