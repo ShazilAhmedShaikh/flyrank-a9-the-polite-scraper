@@ -21,6 +21,8 @@ htmlcov/
 
 # Environment
 .env
+.scrape_state.json
+output/.scrape_state.json
 
 # IDE & OS
 .idea/

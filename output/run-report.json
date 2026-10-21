@@ -1,11 +1,18 @@
 {
-  "start_time": "2026-10-21T17:53:15Z",
-  "end_time": "2026-10-21T17:53:15Z",
-  "duration_seconds": 0.57,
+  "start_time": "2026-10-21T17:55:41Z",
+  "end_time": "2026-10-21T17:55:43Z",
+  "duration_seconds": 2.0,
   "pages_fetched": 0,
   "cache_hits": 60,
   "valid_records": 60,
   "invalid_records": 0,
   "failed_pages": 0,
-  "failed_urls": []
+  "failed_urls": [],
+  "change_detection": {
+    "new": 60,
+    "changed": 0,
+    "unchanged": 0,
+    "gone": 0,
+    "total_current": 60
+  }
 }
