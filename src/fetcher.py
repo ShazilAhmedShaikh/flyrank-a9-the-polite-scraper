@@ -56,6 +56,8 @@ def fetch_html(
             response=response
         )
 
+    # Ensure UTF-8 decoding for currency symbols and special characters
+    response.encoding = response.apparent_encoding or "utf-8"
     html = response.text
     # 5. Save copy to cache
     cache_path.write_text(html, encoding="utf-8")
