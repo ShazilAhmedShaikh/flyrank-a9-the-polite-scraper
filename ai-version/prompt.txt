@@ -1,0 +1,12 @@
+PROMPT GIVEN TO AI ASSISTANT:
+--------------------------------
+"Write a polite web scraper in Python using Requests and BeautifulSoup to scrape the Books to Scrape website (https://books.toscrape.com).
+Requirements:
+1. Crawl only the first 3 catalogue pages by dynamically finding the 'next' button link.
+2. Discover all book links from those 3 pages (should be 60 books total) and deduplicate them.
+3. Visit every book page and extract: title, product_url, price_text, availability_text, rating_text, description (None if missing), source_page, and fetched_at timestamp.
+4. Normalize the price into a numeric float price_gbp alongside price_text.
+5. Be polite: send a custom User-Agent identifying the bot, use a request timeout, wait at least 500ms between requests, and cache fetched pages to disk so reruns do not hammer the site.
+6. Validate records using Pydantic and save to output/books.json. Rerunning should not duplicate records.
+7. If one book URL fails (e.g. 404), catch the error, log it, and continue so the other 59 books are saved.
+8. Output a run report with statistics."
